@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Compiler · 6-Stage Pipeline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <div class="logo">
+                <span class="logo-bracket">[</span>
+                <span class="logo-text">Mini Compiler</span>
+                <span class="logo-bracket">]</span>
+            </div>
+            <div class="pipeline-badge">
+                <span class="stage-dot"></span>
+                <span class="stage-dot"></span>
+                <span class="stage-dot"></span>
+                <span class="stage-dot"></span>
+                <span class="stage-dot"></span>
+                <span class="stage-dot"></span>
+                <span class="badge-text">6-stage pipeline</span>
+            </div>
+        </header>
+
+        <main class="workspace">
+            <section class="pane editor-pane">
+                <div class="pane-head">
+                    <span class="pane-title">Source</span>
+                    <div class="example-wrap">
+                        <select id="examples" class="example-select">
+                            <option value="">Load example…</option>
+                            <option value="01_arithmetic.txt">Arithmetic</option>
+                            <option value="02_simple_if.txt">Simple If</option>
+                            <option value="03_if_else.txt">If-Else</option>
+                            <option value="04_for_loop.txt">For Loop</option>
+                            <option value="05_nested_loop.txt">Nested Loops</option>
+                            <option value="06_complex_expression.txt">Complex Expr</option>
+                            <option value="07_comparison.txt">Comparison</option>
+                            <option value="08_optimization_demo.txt">Optimization</option>
+                            <option value="09_loop_arithmetic.txt">Loop + Math</option>
+                            <option value="10_factorial_iterative.txt">Factorial</option>
+                            <option value="11_conditional_loop.txt">Cond. in Loop</option>
+                            <option value="12_error_undefined.txt">Error Demo</option>
+                            <option value="13_parentheses.txt">Parentheses</option>
+                        </select>
+                    </div>
+                </div>
+                <textarea id="sourceCode" class="code-input" placeholder="// Write code here" spellcheck="false">let x = 10;
+let y = 20;
+print x + y;</textarea>
+                <div class="actions">
+                    <button id="compileBtn" class="action-btn compile">Compile</button>
+                    <button id="runBtn" class="action-btn run">Run</button>
+                    <button id="clearBtn" class="action-btn clear">Clear</button>
+                </div>
+            </section>
+
+            <section class="pane output-pane">
+                <nav class="tab-bar">
+                    <button class="tab-btn active" data-tab="tokens">Tokens</button>
+                    <button class="tab-btn" data-tab="ast">AST</button>
+                    <button class="tab-btn" data-tab="semantic">Semantic</button>
+                    <button class="tab-btn" data-tab="optimizer">Optimizer</button>
+                    <button class="tab-btn" data-tab="bytecode">Bytecode</button>
+                    <button class="tab-btn" data-tab="output">Output</button>
+                </nav>
+                <div class="tab-views">
+                    <div id="tokens" class="tab-panel active">
+                        <pre id="tokensOutput" class="console">Click "Compile" to see tokens.</pre>
+                    </div>
+                    <div id="ast" class="tab-panel">
+                        <pre id="astOutput" class="console">Click "Compile" to see AST.</pre>
+                    </div>
+                    <div id="semantic" class="tab-panel">
+                        <pre id="semanticOutput" class="console">Click "Compile" to see semantic analysis.</pre>
+                    </div>
+                    <div id="optimizer" class="tab-panel">
+                        <pre id="optimizerOutput" class="console">Click "Compile" to see optimizations.</pre>
+                    </div>
+                    <div id="bytecode" class="tab-panel">
+                        <pre id="bytecodeOutput" class="console">Click "Compile" to see bytecode.</pre>
+                    </div>
+                    <div id="output" class="tab-panel">
+                        <pre id="executionOutput" class="console">Click "Run" to see output.</pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="syntax-bar">
+            <h4 class="syntax-title">Syntax</h4>
+            <ul class="syntax-list">
+                <li><code>let x = 10;</code></li>
+                <li><code>print x + y;</code></li>
+                <li><code>if x &gt; 5 { }</code></li>
+                <li><code>for i = 1 to 10 { }</code></li>
+                <li><code>+ - * / &gt; &lt; ==</code></li>
+            </ul>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
